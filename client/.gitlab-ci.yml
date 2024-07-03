@@ -1,0 +1,24 @@
+stages:
+    - building
+
+building:
+    stage: building
+    image: node:21.7.3
+    tags:
+        - tag-front
+    only:
+        - development
+    before_script:
+        - chmod 400 "$PRELIVE_SSH_KEY"
+    cache:
+        paths:
+            - node_modules/
+            - .npm/
+    script:
+        - cp .env.example .env
+        - sed -i 's/^VITE_BASE_URL_RELEASE = ""/VITE_BASE_URL_RELEASE = "https:\/\/preliveapi-tag.ekeng.am\/api"/' .env
+        - sed -i 's/^VITE_WEB_URL_RELEASE = ""/VITE_WEB_URL_RELEASE = "https:\/\/prelive-tag.ekeng.am\/api"/' .env
+        - sed -i 's/^VITE_MAX_FILE_SIZE_MB = ""/VITE_MAX_FILE_SIZE_MB = "10"/' .env
+        - npm install --legacy-peer-deps
+        - npm run build
+        - scp -r -o StrictHostKeyChecking=no -i "$PRELIVE_SSH_KEY" dist/* root@192.168.103.38:/var/www/tag-front
