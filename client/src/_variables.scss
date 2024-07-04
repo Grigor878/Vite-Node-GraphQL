@@ -1,0 +1,115 @@
+$bg: #F8FCFF;
+$black: #000;
+$gray: #F8F8F8;
+$white: #ffffff;
+$blue: #00699E;
+$darkBlue: #013A6A;
+$skyBlue : #ADE4FF;
+$manaBlue: #68B3D9;
+$red: #FF0000;
+$darkRed: #AB0422;
+$green: #01A137;
+$pink: #D662FF;
+$orange: #FF9A62;
+$border: #E1E1E1;
+$textSmall: #606060;
+$linear: linear-gradient(92deg, #3DB8F5 0%, #ADE4FF 102%);
+$inputBg: #F4F4F4;
+$inputColor: #5C5C5C;
+$inputBorder: #D7D7D7;
+$inputHover: rgba(186, 186, 186, .5);
+
+@mixin flex {
+    display: flex;
+    align-items: center;
+}
+
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flexCol {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flexColCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+@mixin transition {
+    transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -ms-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+}
+
+@mixin input {
+    background: $inputBg;
+    border: 1px solid $inputBorder;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.4px;
+    color: $inputColor;
+    padding: 14px 11px;
+    border-radius: 8px !important;
+    @include transition;
+
+    &:hover,
+    &:focus {
+        box-shadow: 0px 1px 4px 1px $inputHover;
+    }
+}
+
+@mixin textarea {
+    text-wrap: wrap;
+    resize: none;
+    height: 100%;
+    background: $inputBg;
+    border: 1px solid $inputBorder;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.4px;
+    padding: 14px 11px;
+    border-radius: 8px;
+    @include transition;
+
+    &:hover,
+    &:focus {
+        box-shadow: 0px 1px 4px 1px $inputHover;
+    }
+}
+
+@mixin select {
+    background: $inputBg;
+    border: 1px solid $inputBorder;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.4px;
+    border-radius: 8px;
+    padding: 14px 11px;
+    @include transition;
+
+    &:hover,
+    &:focus {
+        box-shadow: 0px 1px 4px 1px $inputHover;
+    }
+}
+
+@mixin btn {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18.4px;
+    padding: 10px 20px;
+    border-radius: 6px;
+    @include transition;
+    @include flex;
+    gap: 10px;
+}
