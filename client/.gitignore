@@ -24,9 +24,5 @@ package-lock.json
 *.sln
 *.sw?
 
-# Include templates folder and generate-react-cli.json
-templates/
-generate-react-cli.json
-
 # Environment variables
 .env
