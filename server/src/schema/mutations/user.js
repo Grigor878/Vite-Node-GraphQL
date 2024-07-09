@@ -1,6 +1,8 @@
 const { GraphQLString } = require("graphql");
+const { getRepository } = require("typeorm");
 
 const UserType = require("../typeDefs/user");
+const Users = require("../../entities/users");
 
 const CREATE_USER = {
     type: UserType,
@@ -9,16 +11,18 @@ const CREATE_USER = {
         username: { type: GraphQLString },
         password: { type: GraphQLString }
     },
-    async resolve(parent, args, context) {
+    async resolve(parent, args) {
         const { name, username, password } = args;
-        const db = context.db;
+        
+        const userRepository = getRepository(Users);
 
-        const [result] = await db.execute(
-            'INSERT INTO users (name, username, password) VALUES (?, ?, ?)',
-            [name, username, password]
-        );
+        const newUser = userRepository.create({ name, username, password });
 
-        return { id: result.insertId, name, username, password };
+        await userRepository.save(newUser);
+
+        return newUser;
     }
-}
+};
+
 module.exports = CREATE_USER;
+

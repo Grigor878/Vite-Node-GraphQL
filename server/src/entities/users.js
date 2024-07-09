@@ -1,7 +1,7 @@
 const { EntitySchema } = require('typeorm');
 
 const Users = new EntitySchema({
-    name: 'Users',
+    name: 'users',
     tableName: 'users',
     columns: {
         id: {
@@ -22,3 +22,22 @@ const Users = new EntitySchema({
 });
 
 module.exports = Users;
+
+// const { BaseEntity, Column, Entity, PrimaryGeneratedColumn } = require("typeorm");
+
+// @Entity()
+// class Users extends BaseEntity {
+//     @PrimaryGeneratedColumn()
+//     id;
+
+//     @Column()
+//     name;
+
+//     @Column()
+//     username;
+
+//     @Column()
+//     password;
+// }
+
+// module.exports = Users;

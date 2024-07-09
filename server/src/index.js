@@ -20,7 +20,7 @@ const port = process.env.DB_PORT || 5000;
             username: process.env.DB_USER,
             password: process.env.DB_PASSWORD,
             logging: true,
-            synchronize: false,
+            synchronize: true,
             entities: [Users]
         });
 
