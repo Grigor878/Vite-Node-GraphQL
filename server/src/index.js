@@ -2,11 +2,12 @@ require('dotenv').config();
 
 const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
-const cors = require('cors');
-const schema = require('./schema/schema');
 const { createConnection } = require('typeorm');
+const cors = require('cors');
+
+const schema = require('./schema/schema');
 const Users = require('./entities/users');
-// const mysql = require('mysql2/promise');
+
 const port = process.env.DB_PORT || 5000;
 
 (async () => {
