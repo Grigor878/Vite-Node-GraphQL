@@ -1,16 +1,20 @@
 const { GraphQLObjectType, GraphQLSchema } = require('graphql');
-// const { GET_ALL_USERS } = require('./mutations/user');
+
+const GET_ALL_USERS = require('./queries/user');
+const CREATE_USER = require('./mutations/user');
 
 const RootQuery = new GraphQLObjectType({
     name: "RootQuery",
     fields: {
-        // getAllUSers: GET_ALL_USERS
+        getAllUsers: GET_ALL_USERS
     }
 })
 
 const Mutation = new GraphQLObjectType({
     name: "Mutation",
-    fields: {}
+    fields: {
+        createUser: CREATE_USER
+    }
 })
 
 module.exports = new GraphQLSchema({

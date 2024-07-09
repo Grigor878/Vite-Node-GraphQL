@@ -4,16 +4,23 @@ const express = require('express');
 const { graphqlHTTP } = require('express-graphql');
 const cors = require('cors');
 const schema = require('./schema/schema');
-const mysql = require('mysql2/promise');
+const { createConnection } = require('typeorm');
+const Users = require('./entities/users');
+// const mysql = require('mysql2/promise');
 const port = process.env.DB_PORT || 5000;
 
 (async () => {
     try {
-        const connection = await mysql.createConnection({
+        const connection = await createConnection({
+            type: 'mysql',
             host: process.env.DB_HOST,
+            port: process.env.DB_PORT,
             database: process.env.DB_NAME,
-            user: process.env.DB_USER,
-            password: process.env.DB_PASSWORD
+            username: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            logging: true,
+            synchronize: false,
+            entities: [Users]
         });
 
         console.log('Connected to MySQL database');
@@ -29,7 +36,7 @@ const port = process.env.DB_PORT || 5000;
         }));
 
         app.listen(port, () => {
-            console.log(`Server started on port ${port}`);
+            console.log(`Server started on port ${port}`)
         });
     } catch (err) {
         console.error('Error connecting to the database:', err);
