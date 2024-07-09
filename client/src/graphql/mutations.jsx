@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export const CREATE_USER = gql`
-  mutation createUser($name, $username, $password) {
+  mutation createUser($name: String!, $username: String!, $password: String!) {
     createUser(name: $name, username: $username, password: $password) {
       id
       name
@@ -12,7 +12,9 @@ export const CREATE_USER = gql`
 
 export const UPDATE_PASSWORD = gql`
   mutation updatePassword(
-    $username, $oldPassword, $newPassword
+    $username: String!
+    $oldPassword: String!
+    $newPassword: String!
   ) {
     updatePassword(
       username: $username
@@ -25,7 +27,7 @@ export const UPDATE_PASSWORD = gql`
 `;
 
 export const DELETE_USER = gql`
-  mutation deleteUser($id) {
+  mutation deleteUser($id: ID!) {
     deleteUser(id: $id) {
       message
     }

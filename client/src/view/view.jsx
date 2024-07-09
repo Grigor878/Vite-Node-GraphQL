@@ -1,7 +1,15 @@
+import { CreateUser } from "../components/createUser/createUser";
+import { ListUser } from "../components/listUser/listUser";
+import { UpdatePassword } from "../components/updatePassword/updatePassword";
+
 const View = () => {
   return (
-    <div>view</div>
-  )
-}
+    <>
+      <CreateUser />
+      <ListUser />
+      <UpdatePassword />
+    </>
+  );
+};
 
-export default View
+export default View;
